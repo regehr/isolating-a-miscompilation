@@ -5,5 +5,8 @@ for Ubuntu 14.04 on x86-64. You'll also need the GMP 6.1.1 source code
 and you need to have configured and built GMP in a subdirectory called
 <tt>build</tt>. If you've placed either GMP or the compiler binary
 anywhere besides your home directory, you'll need to adjust some paths
-in the C-Reduce interestingness tests. Also, tis-interpreter and
-C-Reduce must be in your PATH.
+in the C-Reduce interestingness tests. Also,
+[tis-interpreter](http://trust-in-soft.com/tis-interpreter/)
+and
+[C-Reduce](https://github.com/csmith-project/creduce)
+must be in your PATH.
