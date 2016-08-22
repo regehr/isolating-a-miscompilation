@@ -1,4 +1,4 @@
-ulimit -t 30
+ulimit -t 35
 
 FILES=merged.c
 
@@ -33,7 +33,9 @@ echo here3 &&
 clang -Wall -Wextra -O3 -fsanitize=undefined -fsanitize-trap=undefined $INCS $FILES -o exe1d > clang-out.txt 2>&1 &&
   ! grep 'conversions than data arguments' clang-out.txt &&
   ! grep 'incompatible redeclaration' clang-out.txt &&
+  ! grep 'incompatible pointer to integer conversion' clang-out.txt &&
   ! grep 'ordered comparison between pointer' clang-out.txt &&
+  ! grep 'assumed to have one element' clang-out.txt &&
   ! grep 'eliding middle term' clang-out.txt &&
   ! grep 'end of non-void function' clang-out.txt &&
   ! grep 'invalid in C99' clang-out.txt &&
@@ -49,7 +51,4 @@ clang -Wall -Wextra -O3 -fsanitize=address $INCS $FILES -o exe1e > /dev/null 2>&
 ./exe1e &&
 /home/regehr/z/compiler-install/llvm-r135022-install/bin/clang -w -O3 -fno-strict-aliasing $INCS $FILES -o exe2 &&
 ! ./exe2 > out.txt 2>&1 &&
-grep wrong out.txt &&
-~/tis-interpreter/tis-interpreter.sh -cpp-command "gcc -C -E -I/home/regehr/gmp-6.1.1/mpz -I/home/regehr/gmp-6.1.1/rand -I/home/regehr/gmp-6.1.1 -I/home/regehr/gmp-6.1.1/tests -I/home/regehr/gmp-6.1.1/build" $FILES > tis-out.txt 2>&1 &&
-! grep -i error tis-out.txt &&
-! grep -i assert tis-out.txt
+grep wrong out.txt
